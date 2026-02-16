@@ -1,5 +1,5 @@
 import bpy, os, json, mathutils
-from bpy.props import EnumProperty, BoolProperty, StringProperty
+from bpy.props import StringProperty
 from bpy.types import Panel, Operator
 
 bl_info = {
