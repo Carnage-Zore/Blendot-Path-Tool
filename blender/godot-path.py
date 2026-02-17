@@ -16,9 +16,9 @@ bl_info = {
 CarnageZore - Made modifications:
 * Added UI
 * Removed Save hook
-* Allowed for exporting only the selected curves as well as all (two seperate buttons)
+* Allowed for exporting only the selected curves as well as all (two separate buttons)
 
-This change includes 2 operators that both call the search_for_curves function wich
+This change includes 2 operators that both call the search_for_curves function which
 I have modified to incorporate the filename and filepath properties. 
 
 I have including a new function to fix invalid filenames.
@@ -103,9 +103,12 @@ def search_for_curves(export_all=False):
         print('Folder does not exist.')
         return False
     if filename == "":
-        print('File name must be at least 1 charcter long.')
+        print('File name must be at least 1 character long.')
         return False
-    print('File is being saved!!')
+
+    filepath = f"{output_file}/{filename}.json"
+
+    print(f'File is being saved: {filepath}')
     
     curves = []
     if export_all:
@@ -120,7 +123,7 @@ def search_for_curves(export_all=False):
     # print(bpy.context.scene.objects)
     # recursively_search_curves(bpy.context.scene.objects, curves)
     #os.makedirs(os.path.dirname(), exist_ok=True)
-    with open(f"{output_file}/{filename}.json", 'w+', encoding='utf-8') as f:
+    with open(filepath, 'w+', encoding='utf-8') as f:
         json.dump(curves, f, ensure_ascii=False, indent=4)
 
     return True
